@@ -1,14 +1,7 @@
 import "./App.css";
 import { NavLink, Routes, Route } from "react-router-dom";
-
-
-const Profile = () => {
-  return (
-    <div className="row">
-      <h2>Это стр с профилем</h2>
-    </div>
-  );
-};
+import Profile from "./Profile";
+import Friends from "./Friends";
 
 const Love = () => {
   return <h2>Это стр со знакомствами</h2>;
@@ -26,18 +19,14 @@ const Settings = () => {
   return <h2>Это стр с настройками</h2>;
 };
 
-const Friends = () => {
-  return <h2>Это стр с друзьями</h2>;
-};
-
 const Exit = () => {
   return <h2>Это выход</h2>;
 };
 
-
-function App() {
+function App(props) {
+  console.log(props);
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
         <div className="col-3">
           <div
@@ -69,12 +58,12 @@ function App() {
         </div>
         <div className="col-9">
           <Routes>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile"element={<Profile function={props.function.key_getUser} />}/>
             <Route path="/love" element={<Love />} />
             <Route path="/music" element={<Music />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/friends" element={<Friends />} />
+            <Route path="/friends"element={<Friends function={props.function.key_getUsers} />}/>
             <Route path="/exit" element={<Exit />} />
           </Routes>
         </div>
